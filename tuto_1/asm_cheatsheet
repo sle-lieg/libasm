@@ -1,0 +1,31 @@
+PSP: Program Segment Prefix (Header)
+
+##### REGISTRES #####
+* Registres generaux:
+    - AX: Accumulateur
+    - BX: Base
+    - CX: Counter
+    - DX: DATA
+
+* Registres de segments:
+    -CS: Code segment   -> addr du segment de la prochaine instruction
+    -DS: Data segment   -> addr du segment des datas du programme en cours
+    -ES: Extra segment  -> addr d'un segmnent au choix
+    -SS: Stack segment  -> addr du segment de pile
+
+* Registres d'offset:
+    -IP: Instruction Pointer    -> offset de la prochaine instruction, from CS register
+    -SP: Stack Pointer          -> offset du sommet de la pile, from SS register
+    -SI: Source Index
+    -DI: Destination Index
+    -BP: Base Pointer
+
+!!! System call inputs by register:
+    arguments   | registers
+           ID   |       rax
+            1   |       rdi
+            2   |       rsi
+            3   |       rdx
+            4   |       r10
+            5   |        r8
+            6   |        r9
