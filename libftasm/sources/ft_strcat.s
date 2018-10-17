@@ -1,16 +1,16 @@
-global ft_strcat
+global _ft_strcat
 
-ft_strcat:
-    mov rdx, rdi
-    xor rax, rax
-    repnz scasb     ; SCAnStringByte: compare byte at rdi with value in rax, inc rdi, dec rcx.
-                    ; REPeatwhileNotequalZero: repeat the instruciton while zero flag not set
-    dec rdi
+_ft_strcat:
+	mov rdx, rdi
+	mov rcx, -1
+	xor rax, rax
+	repnz scasb
+	dec rdi
 copy:
-    lodsb
-    stosb
-    test al, al
-    jnz copy
+	lodsb
+	stosb
+	test al, al
+	jnz copy
 
-    mov rax, rdx
-    ret
+	mov rax, rdx
+	ret

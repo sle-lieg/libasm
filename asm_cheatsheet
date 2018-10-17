@@ -1,0 +1,36 @@
+PSP: Program Segment Prefix (Header)
+
+##### REGISTRES #####
+* Registres generaux:
+	• EAX — Accumulator for operands and results data
+	• EBX — Pointer to data in the DS segment
+	• ECX — Counter for string and loop operations
+	• EDX — I/O pointer
+	• ESI — Pointer to data in the segment pointed to by the DS register; source pointer for string operations
+	• EDI — Pointer to data (or destination) in the segment pointed to by the ES register; destination pointer for
+		string operations
+	• ESP — Stack pointer (in the SS segment)
+	• EBP — Pointer to data on the stack (in the SS segment)
+
+* Registres de segments:
+    -CS: Code segment   -> addr du segment de la prochaine instruction
+    -DS: Data segment   -> addr du segment des datas du programme en cours
+    -ES: Extra segment  -> addr d'un segmnent au choix
+    -SS: Stack segment  -> addr du segment de pile
+
+* Registres d'offset:
+    -IP: Instruction Pointer    -> offset de la prochaine instruction, from CS register
+    -SP: Stack Pointer          -> offset du sommet de la pile, from SS register
+    -SI: Source Index
+    -DI: Destination Index
+    -BP: Base Pointer
+
+!!! System call inputs by register:
+    arguments   | registers
+           ID   |       rax
+            1   |       rdi
+            2   |       rsi
+            3   |       rdx
+            4   |       r10
+            5   |        r8
+            6   |        r9
