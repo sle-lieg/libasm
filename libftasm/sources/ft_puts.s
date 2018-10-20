@@ -4,6 +4,8 @@ SYS_WRITE equ 1
 STDOUT equ 1
 
 ft_puts:
+    test rdi, rdi
+    jz return
     mov rdx, rdi ; save address of str to print
 
     ; calculate len of string pointed by rdi
@@ -28,6 +30,7 @@ ft_puts:
     syscall
 
     pop rax
+return:
     ret
 
 section .data

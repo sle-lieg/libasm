@@ -62,7 +62,7 @@ int main()
 {
 	char *str = "Hello, World!";
 
-	int ret = ft_puts(str);
+	int ret = ft_strlen(str);
 	printf("ret = %d\n", ret);
 	// test_bzero();
 	// test_strcat();
