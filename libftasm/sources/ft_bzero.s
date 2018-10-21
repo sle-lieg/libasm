@@ -1,6 +1,6 @@
-global _ft_bzero
+global ft_bzero
 
-_ft_bzero:
+ft_bzero:
 	test rsi, rsi
 	jz return
 	mov rcx, rsi

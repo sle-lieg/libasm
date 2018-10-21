@@ -1,6 +1,6 @@
-global _ft_strcat
+global ft_strcat
 
-_ft_strcat:
+ft_strcat:
 	mov rdx, rdi
 	mov rcx, -1
 	xor rax, rax
