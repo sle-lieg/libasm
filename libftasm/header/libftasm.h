@@ -22,7 +22,7 @@ char	*ft_strdup(const char *s);
 
 // Bonus
 
-int     ft_islower(int c);
-int     ft_isupper(int c);
+int		ft_islower(int c);
+int		ft_isupper(int c);
 
 #endif

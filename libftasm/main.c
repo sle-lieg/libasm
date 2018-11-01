@@ -67,6 +67,12 @@ int main()
 	char src[] = "byebye, earth!";
 	char *cpy = NULL;
 
+	// puts(dst);
+	ft_puts(dst);
+	ft_bzero(dst + 5, strlen(dst) - 5);
+	// puts(dst);
+	ft_puts(dst);
+
 	cpy = ft_strdup(dst);
 	ft_puts(cpy);
 	// // memcpy(dst, src, 26);

@@ -1,6 +1,6 @@
 LIB = libftasm.a
-NASM = nasm -f elf64
-# NASM = nasm -f macho64
+# NASM = nasm -f elf64
+NASM = nasm -f macho64
 
 SOURCES_D = sources/
 OBJECTS_D = objects/
@@ -14,8 +14,11 @@ OBJECTS = $(SOURCES:%.s=%.o)
 
 all: createDir $(LIB) exec
 
+# exec: $(LIB)
+# 	gcc -Wl,-no_pie -g main.c -L. -lftasm -o $@ -Iheader/
+
 exec: $(LIB)
-	gcc main.c -L. -lftasm -o $@ -Iheader/
+	gcc -m64 main.c -L. -lftasm -o $@ -Iheader/
 
 createDir:
 	@test -d $(OBJECTS_D) || mkdir $(OBJECTS_D)

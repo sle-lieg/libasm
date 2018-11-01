@@ -1,21 +1,29 @@
-global ft_strdup
-extern ft_strlen
-extern ft_memcpy
-extern malloc
+section .text
+	global _ft_strdup
+	extern _ft_strlen
+	extern _ft_memcpy
+	extern _malloc
 
-ft_strdup:
+_ft_strdup:
+	push rbp
+	mov rbp, rsp
+	; save addr of src(rdi)
 	push rdi
-	; get length of rdi
-	call ft_strlen
-	mov rbx, rax
-	; malloc byte * length
+	; get length of src
+	call _ft_strlen
+	push rax
+
+	; malloc(rax)
 	mov rdi, rax
-	call malloc
+	call _malloc
+	test rax, rax ; test if malloc failed
+	jz return
 
 	; memcpy
 	mov rdi, rax
+	pop rdx
 	pop rsi
-	mov rdx, rbx
-	call ft_memcpy
-
+	call _ft_memcpy
+return:
+	leave
 	ret
