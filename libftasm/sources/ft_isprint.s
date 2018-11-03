@@ -1,6 +1,6 @@
-global ft_isprint
+global _ft_isprint
 
-ft_isprint:
+_ft_isprint:
     cmp rdi, 0x20
     jl notPrintable
     cmp rdi, 0x7e

@@ -1,13 +1,13 @@
-global ft_isalnum
-extern ft_isalpha
-extern ft_isdigit
+global _ft_isalnum
+extern _ft_isalpha
+extern _ft_isdigit
 
 
-ft_isalnum:
-    call ft_isalpha
+_ft_isalnum:
+    call _ft_isalpha
     test rax, rax
     jnz isAlnum
-    call ft_isdigit
+    call _ft_isdigit
     test rax, rax
     jnz isAlnum
     mov rax, 0

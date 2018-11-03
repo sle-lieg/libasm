@@ -1,6 +1,6 @@
-global ft_memset
+global _ft_memset
 
-ft_memset:
+_ft_memset:
 	push rdi
 	mov rcx, rdx
 	mov rax, rsi

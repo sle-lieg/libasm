@@ -1,6 +1,9 @@
 #include "libftasm.h"
 #include <string.h>
 #include <unistd.h>
+#include <fcntl.h>
+// #include <sys/types.h>
+// #include <sys/uio.h>
 
 // static void	test_bzero() {
 // 	char		src1[] = "abcdefgh";
@@ -63,18 +66,22 @@
 
 int main()
 {
-	char dst[] = "Hello, World!";
-	char src[] = "byebye, earth!";
-	char *cpy = NULL;
+	// char dst[] = "Hello, World!";
+	// char src[] = "byebye, earth!";
+	// char *cpy = NULL;
+	int fd;
 
+	if ((fd = open("Makefile", O_RDONLY)) < 0)
+		ft_puts("ERROR PATH");
+	ft_cat(fd);
 	// puts(dst);
-	ft_puts(dst);
-	ft_bzero(dst + 5, strlen(dst) - 5);
-	// puts(dst);
-	ft_puts(dst);
+	// ft_puts(dst);
+	// ft_bzero(dst + 5, strlen(dst) - 5);
+	// // puts(dst);
+	// ft_puts(dst);
 
-	cpy = ft_strdup(dst);
-	ft_puts(cpy);
+	// cpy = ft_strdup(dst);
+	// ft_puts(cpy);
 	// // memcpy(dst, src, 26);
 	// ft_memcpy(dst, src, 26);
 	// ft_puts(dst);

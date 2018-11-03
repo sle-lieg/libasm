@@ -1,5 +1,8 @@
-SYS_WRITE equ 0x2000004
-STDOUT equ 1
+SYS_WRITE	equ 0x2000004
+STDOUT		equ 1
+
+section .data
+	newline db 10
 
 section .text
 	global _ft_puts
@@ -24,7 +27,8 @@ _ft_puts:
 	syscall
 	; print the \n
 	mov rax, SYS_WRITE
-	mov rsi, newline
+	; mov rsi, newline
+	lea rsi, [rel newline]
 	mov rdx, 1
 	syscall
 
@@ -33,5 +37,3 @@ return:
 	pop rbp
 	ret
 
-section .data
-	newline db 10

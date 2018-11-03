@@ -1,6 +1,6 @@
-global ft_isdigit
+global _ft_isdigit
 
-ft_isdigit:
+_ft_isdigit:
     cmp rdi, '0'
     jl notDigit
     cmp rdi, '9'

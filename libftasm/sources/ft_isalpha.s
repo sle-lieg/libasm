@@ -1,12 +1,12 @@
-global ft_isalpha
-extern ft_islower
-extern ft_isupper
+global _ft_isalpha
+extern _ft_islower
+extern _ft_isupper
 
-ft_isalpha:
-    call ft_islower
+_ft_isalpha:
+    call _ft_islower
     test rax, rax
     jnz retTrue
-    call ft_isupper
+    call _ft_isupper
     test rax, rax
     jnz retTrue
     mov rax, 0

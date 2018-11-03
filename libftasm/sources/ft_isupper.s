@@ -1,6 +1,6 @@
-global ft_isupper
+global _ft_isupper
 
-ft_isupper:
+_ft_isupper:
     cmp rdi, 'A'
     jl notUpper
     cmp rdi, 'Z'

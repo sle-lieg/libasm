@@ -1,8 +1,8 @@
-global ft_tolower
-extern ft_isupper
+global _ft_tolower
+extern _ft_isupper
 
-ft_tolower:
-    call ft_isupper
+_ft_tolower:
+    call _ft_isupper
     test rax, rax
     jz notUpperCase
     xor rdi, 0x20

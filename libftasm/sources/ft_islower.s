@@ -1,6 +1,6 @@
-global ft_islower
+global _ft_islower
 
-ft_islower:
+_ft_islower:
     cmp rdi, 'a'
     jl notLower
     cmp rdi, 'z'
