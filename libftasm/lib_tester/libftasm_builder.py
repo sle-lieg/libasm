@@ -24,9 +24,10 @@ ffiBuilder.cdef("""
 
 ffiBuilder.set_source("_libasm_cffi",
 	"""
-		#include "header/libftasm.h"
+		#include "libftasm.h"
 	""",
-	library_dirs=['./'],
+	include_dirs=['/Users/sle-lieg/libasm/libftasm/header/'],
+	library_dirs=['/Users/sle-lieg/libasm/libftasm/'],
 	libraries=['ftasm']
 )
 
