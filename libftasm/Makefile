@@ -1,6 +1,5 @@
 # LIB = libftasm.a
 LIB = libftasm.dylib
-# NASM = nasm -f elf64
 NASM = nasm -f macho64
 
 SOURCES_D = sources/
@@ -14,9 +13,6 @@ SOURCES =	ft_islower.s ft_isprint.s ft_isupper.s ft_strcat.s ft_puts.s \
 OBJECTS = $(SOURCES:%.s=%.o)
 
 all: createDir $(LIB) exec
-
-# exec: $(LIB)
-# 	gcc -Wl,-no_pie -g main.c -L. -lftasm -o $@ -Iheader/
 
 exec: $(LIB)
 	gcc -m64 main.c -L. -lftasm -o $@ -Iheader/

@@ -26,9 +26,9 @@ ffiBuilder.set_source("_libasm_cffi",
 	"""
 		#include "libftasm.h"
 	""",
-	include_dirs=['/Users/sle-lieg/libasm/libftasm/header/'],
-	library_dirs=['/Users/sle-lieg/libasm/libftasm/'],
-	libraries=['ftasm']
+	libraries=['ftasm'],
+	runtime_library_dirs=['/Users/avalanche/libasm/libftasm/'],
+	include_dirs=['/Users/avalanche/libasm/libftasm/header/']
 )
 
 if __name__ == "__main__":
