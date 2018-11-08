@@ -1,43 +1,72 @@
 from build.lib._libasm_cffi import ffi, lib
 from build.lib._libc_cffi import lib as libC
-import subprocess
+from multiprocessing import Process, Queue
+import signal
 
-def test_bzero_1(strA):
-	s1 = ffi.new("char[]", strA)
-	s2 = ffi.new("char[]", strA)
+def my_bzero(q, string, len, offset):
+	if string != b"":
+		src = ffi.new("char[]", string)
+	else:
+		src = ffi.NULL
 
-	lib.ft_bzero(s1 + 5, 5)
-	libC.bzero(s2 + 5, 5)
-	if ffi.string(s1) != ffi.string(s2):
-		return -1
-	return 0
+	lib.ft_bzero(src + offset, len)
+	q.put(b''.join(src).decode('utf-8'))
 
-def test_bzero_2(strA):
-	s = ffi.new("char[]", strA)
-	print(ffi.string(s))
-	lib.ft_bzero(s + 5, 5)
-	print(ffi.string(s))
+def libc_bzero(q, string, len, offset):
+	if string != b"":
+		src = ffi.new("char[]", string)
+	else:
+		src = ffi.NULL
 
-def test_bzero_3():
-	# ret = subprocess.call(lib.ft_bzero(ffi.NULL, 5))
-	# print("ret code = " + ret)
-	# retC = subprocess.call(libC.bzero(ffi.NULL, 5))
-	# print("retC code = " + retC)
-	try:
-		ret = subprocess.check_output(lib.ft_bzero(ffi.NULL, 5), shell=True, stderr=subprocess.STDOUT)
-		print("ret code = " + ret)
-		retC = subprocess.call(libC.bzero(ffi.NULL, 5), shell=True, stderr=subprocess.STDOUT)
-		print("retC code = " + retC)
-	except subprocess.CalledProcessError as err:
-		print("err code: " + err.returncode)
+	libC.bzero(src + offset, len)
+	q.put(b''.join(src).decode('utf-8'))
 
+def test_bzero(string, len, offset):
+	q1 = Queue()
+	q2 = Queue()
+
+	p1 = Process(target=my_bzero, args=[q1, string, len, offset])
+	p2 = Process(target=libc_bzero, args=[q2, string, len, offset])
+
+	p1.start()
+	p2.start()
+
+	str_1 = string
+	str_2 = string
+	if string != b"":
+		str_1 = q1.get()
+		str_2 = q2.get()
+
+	p1.join()
+	p2.join()
+	print("p1 code:", p1.exitcode, "p1 string:", str_1)
+	print("p2 code:", p2.exitcode, "p2 string:", str_2)
+	if (p1.exitcode != p2.exitcode or str_1 != str_2):
+		return "test_bzero failed"
+		# print("ERROR")
 
 def bzero_test():
-	strA = b"hello world"
-	if test_bzero_1(strA) != 0:
-		print("test_bzero_1 failed")
-	if test_bzero_2(strA):
-		print("test_bzero_2 failed")
-	test_bzero_3()
+	string = b"hello world"
+	results = []
 
-bzero_test()
+	results.append(test_bzero(string, 5, 0))
+	results.append(test_bzero(string, 5, 3))
+	results.append(test_bzero(string, 0, 0))
+	results.append(test_bzero(string, 0, 3))
+	results.append(test_bzero(b"", 2, 0))
+
+	for res in results:
+		print(res)
+
+# str = "hello world"
+# (ft_)bzero(str, 5)		valid
+# (ft_)bzero(str + 5, 5)	valid
+# (ft_)bzero(NULL, 0)		valid
+# (ft_)bzero(NULL, 1)		SIGSEGV
+
+# (ft_)bzero(str + 5, 15)	UB
+# (ft_)bzero(str, 35)		UB
+# (ft_)bzero(str, -5)		UB
+
+if __name__ == "__main__":
+	bzero_test()
