@@ -2,7 +2,7 @@
 # define LIBFTASM_H
 
 # include <stdio.h>
-# include <stdlib.h>
+// # include <stdlib.h>
 
 void	ft_bzero(void *s, size_t n);
 char	*ft_strcat(char *dest, const char *src);

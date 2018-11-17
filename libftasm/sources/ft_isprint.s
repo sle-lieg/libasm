@@ -1,13 +1,13 @@
 global _ft_isprint
 
 _ft_isprint:
-    cmp rdi, 0x20
-    jl notPrintable
-    cmp rdi, 0x7e
-    jl notPrintable
-    mov rax, 1
-    ret
+	cmp rdi, 0x20
+	jl notPrintable
+	cmp rdi, 0x7e
+	jg notPrintable
+	mov rax, 1
+	ret
 
-    notPrintable:
-    mov rax, 0
-    ret
+	notPrintable:
+	mov rax, 0
+	ret

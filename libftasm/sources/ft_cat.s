@@ -19,6 +19,7 @@ section .text
 _ft_cat: ; rdi: file descriptor
 	push rbp
 	mov rbp, rsp
+
 	sub rsp, 0x10
 	; save file descriptor on stack
 	mov [rsp + 4], rdi

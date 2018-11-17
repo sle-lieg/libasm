@@ -1,5 +1,4 @@
-# LIB = libftasm.a
-LIB = libftasm.dylib
+NAME = libfts.a
 NASM = nasm -f macho64
 
 SOURCES_D = sources/
@@ -10,31 +9,24 @@ SOURCES =	ft_islower.s ft_isprint.s ft_isupper.s ft_strcat.s ft_puts.s \
 			ft_tolower.s ft_toupper.s ft_strlen.s ft_memset.s \
 			ft_memcpy.s ft_strdup.s ft_cat.s
 
-OBJECTS = $(SOURCES:%.s=%.o)
+OBJECTS = $(SOURCES:%.s=$(OBJECTS_D)%.o)
 
-all: createDir $(LIB) exec
-
-exec: $(LIB)
-	gcc -m64 main.c -L. -lftasm -o $@ -Iheader/
+all: createDir $(NAME)
 
 createDir:
 	@test -d $(OBJECTS_D) || mkdir $(OBJECTS_D)
 
-# $(LIB): $(OBJECTS)
-# 	ar rc $@ $(addprefix $(OBJECTS_D), $^)
-# 	ranlib $@
+$(NAME): $(OBJECTS)
+	ar rc $@ $^
+	ranlib $@
 
-$(LIB): $(OBJECTS)
-	gcc -dynamiclib -o $@ $(addprefix $(OBJECTS_D), $^)
-	# ranlib $@
-
-%.o: $(SOURCES_D)%.s
-	$(NASM) $^ -o $(OBJECTS_D)$@
+$(OBJECTS_D)%.o: $(SOURCES_D)%.s
+	$(NASM) $^ -o $@
 
 clean:
-	rm -f $(OBJECTS_D)$(OBJECTS)
+	rm -f $(OBJECTS)
 
 fclean: clean
-	rm -f $(LIB)
+	rm -f $(NAME)
 
 re: fclean all
