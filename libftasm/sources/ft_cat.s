@@ -20,6 +20,8 @@ _ft_cat: ; rdi: file descriptor
 	push rbp
 	mov rbp, rsp
 
+	; cmp edi, 0
+	; jl return
 	sub rsp, 0x10
 	; save file descriptor on stack
 	mov [rsp + 4], rdi
@@ -32,6 +34,7 @@ _ft_cat: ; rdi: file descriptor
 	lea rsi, [rel buffer]
 	mov rdx, BUFF_SIZE
 	syscall
+	jc return
 	; test if EOF or error (-1)
 	cmp rax, 0x1
 	jl return
