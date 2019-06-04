@@ -1,4 +1,4 @@
-NAME = libftasm.a
+NAME = libfts.a
 NASM = nasm -f macho64
 
 SOURCES_D	= sources/

@@ -1,4 +1,6 @@
 #include "test_libasm.h"
+#include <unistd.h>
+#include <string.h>
 
 void print_buffer(const char *s, const int len)
 {
@@ -6,14 +8,30 @@ void print_buffer(const char *s, const int len)
 
 	tmp = s;
 	while (tmp < (s + len))
-		printf("%c", *tmp++);
+	{
+		if (*tmp)
+			write(1, tmp++, 1);
+		else
+		{
+			write(1, ".", 1);
+			++tmp;
+		}
+	}
 }
 
 void show_error(const char *msg, const char *s1, const char *s2, const int len)
 {
-	printf(RED "%s:\n" GREEN "+++", msg);
+	// printf(RED "%s:\n" GREEN "+++", msg);
+	// print_buffer(s1, len);
+	// printf("+++\n" YELLOW "---");
+	// print_buffer(s2, len);
+	// printf("---\n" END);
+	write(1, msg, strlen(msg));
+	write(1, "\n", 1);
 	print_buffer(s1, len);
-	printf("+++\n" YELLOW "---");
+	write(1, "\n", 1);
+	// write("+++\n" YELLOW "---");
 	print_buffer(s2, len);
-	printf("---\n" END);
+	write(1, "\n", 1);
+	// write("---\n" END);
 }

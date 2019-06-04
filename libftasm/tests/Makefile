@@ -7,10 +7,11 @@ OBJECTS_D	= objects/
 LIBFTASM_D	= ../
 
 INCLUDES	= -I$(LIBFTASM_D)includes -Iincludes
-LIBS		= -L$(LIBFTASM_D) -lftasm
+LIBS		= -L$(LIBFTASM_D) -lfts
 
 SOURCES =	main.c tools.c test_bzero.c test_is.c test_tolower.c\
-			test_toupper.c test_memcpy.c test_memset.c test_puts.c
+			test_toupper.c test_memcpy.c test_memset.c test_puts.c\
+			test_strdup.c test_strlen.c
 
 OBJECTS = $(SOURCES:%.c=$(OBJECTS_D)%.o)
 
