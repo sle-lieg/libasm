@@ -7,7 +7,7 @@ int test_is(test_is_ptr f1, test_is_ptr f2, const char *f_name)
 	int ret2;
 	int err;
 
-	i = 0;
+	i = -255;
 	err = 0;
 	while (i < 255)
 	{

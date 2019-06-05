@@ -22,6 +22,6 @@ int test_memset(void);
 int test_puts(void);
 int test_strdup(void);
 int test_strlen(void);
-
+int test_strcat(void);
 
 #endif

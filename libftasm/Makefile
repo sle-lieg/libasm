@@ -3,13 +3,13 @@ NASM = nasm -f macho64
 
 SOURCES_D	= sources/
 OBJECTS_D	= objects/
-TESTS_D		= tests/
+TESTS_D		= tests_perso/
 
 # LIBFTASM SOURCES
 SOURCES =	ft_islower.s ft_isprint.s ft_isupper.s ft_strcat.s ft_puts.s \
 			ft_bzero.s ft_isalnum.s ft_isalpha.s ft_isascii.s ft_isdigit.s \
 			ft_tolower.s ft_toupper.s ft_strlen.s ft_memset.s \
-			ft_memcpy.s ft_strdup.s ft_cat.s
+			ft_memcpy.s ft_strdup.s ft_cat.s ft_isblank.s ft_isspace.s
 
 OBJECTS = $(SOURCES:%.s=$(OBJECTS_D)%.o)
 
