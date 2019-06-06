@@ -1,17 +1,20 @@
-global _ft_isalpha
-extern _ft_islower
-extern _ft_isupper
+section .text
+	global _ft_isalpha
+	extern _ft_islower
+	extern _ft_isupper
 
 _ft_isalpha:
-    call _ft_islower
-    test rax, rax
-    jnz retTrue
-    call _ft_isupper
-    test rax, rax
-    jnz retTrue
-    mov rax, 0
-    ret
+	push rbp
+	mov rbp, rsp
 
-    retTrue:
-    mov rax, 1
-    ret
+	call _ft_islower
+	test rax, rax
+	jnz return
+	call _ft_isupper
+	test rax, rax
+	jnz return
+	mov rax, 0
+
+return:
+	pop rbp
+	ret

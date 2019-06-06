@@ -1,10 +1,6 @@
 section .text
 	global _ft_isblank
 
-isblank:
-	mov rax, 0x1
-	jmp return
-
 _ft_isblank:
 	push rbp
 	mov rbp, rsp
@@ -17,6 +13,10 @@ _ft_isblank:
 
 	;if not, set rax to 0
 	mov rax, 0
+	jmp return
+
+isblank:
+	mov rax, 0x1
 
 return:
 	leave

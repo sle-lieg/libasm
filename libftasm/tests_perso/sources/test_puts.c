@@ -25,21 +25,21 @@ int *create_pipe()
 
 int test_puts()
 {
-	char buffer_puts[MAX_LEN+1] = {0};
-	char buffer_ft_puts[MAX_LEN+1] = {0};
+	char buffer_puts[MAX_LEN] = {0};
+	char buffer_ft_puts[MAX_LEN] = {0};
 	int saved_stdout;
 
 	saved_stdout = dup(STDOUT_FILENO);
 
 	int *pipe = create_pipe();
 
+	// ft_puts("hello world hello world hello");
+
+	// read(pipe[0], buffer_ft_puts, MAX_LEN);
+
 	puts("hello world hello world hello");
 
 	read(pipe[0], buffer_puts, MAX_LEN);
-
-	ft_puts("hello world hello world hello");
-
-	read(pipe[0], buffer_ft_puts, MAX_LEN);
 
 	dup2(saved_stdout, STDOUT_FILENO);
 

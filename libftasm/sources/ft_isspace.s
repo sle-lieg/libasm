@@ -1,14 +1,6 @@
 section .text
 	global _ft_isspace
 
-notspace:
-	mov rax, 0
-	jmp return
-
-isspace:
-	mov rax, 1
-	jmp return
-
 _ft_isspace:
 	push rbp
 	mov rbp, rsp
@@ -19,10 +11,15 @@ _ft_isspace:
 	cmp edi, 0xE
 	jl isspace
 	cmp edi, 0x20
-	je isspace
+	jne notspace
 
-	jmp notspace
+isspace:
+	mov rax, 1
+	jmp return
+
+notspace:
+	mov rax, 0
 
 return:
-	leave
+	pop rbp
 	ret

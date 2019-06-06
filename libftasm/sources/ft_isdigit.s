@@ -1,13 +1,21 @@
-global _ft_isdigit
+section .text
+	global _ft_isdigit
 
 _ft_isdigit:
-    cmp rdi, '0'
-    jl notDigit
-    cmp rdi, '9'
-    jg notDigit
-    mov rax, 1
-    ret
+	push rbp
+	mov rbp, rsp
 
-    notDigit:
-    mov rax, 0
-    ret
+	cmp rdi, '0'
+	jl notDigit
+	cmp rdi, '9'
+	jg notDigit
+
+	mov rax, 1
+	jmp return
+
+notDigit:
+	mov rax, 0
+
+return:
+	pop rbp
+	ret

@@ -1,13 +1,20 @@
-global _ft_isascii
+section .text
+	global _ft_isascii
 
 _ft_isascii:
-    cmp rdi, 0
-    jl notAscii
-    cmp rdi, 127
-    jg notAscii
-    mov rax, 1
-    ret
+	push rbp
+	mov rbp, rsp
 
-    notAscii:
-    mov rax, 0
-    ret
+	cmp rdi, 0
+	jl notAscii
+	cmp rdi, 127
+	jg notAscii
+	mov rax, 1
+	jmp return
+
+notAscii:
+	mov rax, 0
+
+return:
+	pop rbp
+	ret

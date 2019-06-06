@@ -2,6 +2,20 @@
 #include <stdio.h>
 #include <ctype.h>
 
+/**
+	isalnum X
+	isalpha X
+	tolower X
+	isascii √
+	isdigit √
+	islower X
+	isprint √
+	isupper X
+	isblank √
+	isspace √
+
+ */
+
 int main()
 {
 	// test_bzero();
@@ -13,21 +27,22 @@ int main()
 	// test_is(&isprint, &ft_isprint, "test_isprint");
 	// test_is(&isupper, &ft_isupper, "test_isupper");
 	// test_is(&isblank, &ft_isblank, "test_isblank");
+	// test_is(&isspace, &ft_isspace, "test_isspace");
 	// test_tolower();
 	// test_toupper();
 	// test_memcpy();
 	// test_memset();
-	// test_puts();
+	test_puts();
 	// test_strdup();
 	// test_strlen();
 	// test_strcat();
 
-	for (int i = -255; i < 255; i++)
-	{
-		int ret = ft_isspace(i);
-		if (ret)
-			printf("i:%d ret:%d\n", i, ret);
-	}
+	// for (int i = -255; i < 255; i++)
+	// {
+	// 	int ret = ft_isspace(i);
+	// 	if (ret)
+	// 		printf("i:%d ret:%d\n", i, ret);
+	// }
 
 	return (0);
 }

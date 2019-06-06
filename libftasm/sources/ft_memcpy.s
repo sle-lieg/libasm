@@ -6,7 +6,7 @@ section .text
 _ft_memcpy:
 	push rbp
 	mov rbp, rsp
-	sub rsp, 0x8
+	sub rsp, 0x10
 
 	; save addr of dest
 	mov [rbp - STR_OFF], rdi

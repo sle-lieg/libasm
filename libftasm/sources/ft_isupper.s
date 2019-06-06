@@ -1,13 +1,21 @@
-global _ft_isupper
+section .text
+	global _ft_isupper
 
 _ft_isupper:
-    cmp rdi, 0x41
-    jl notUpper
-    cmp rdi, 0x5A
-    jg notUpper
-    mov rax, 1
-    ret
+	push rbp
+	mov rbp, rsp
 
-    notUpper:
-    mov rax, 0
-    ret
+	cmp rdi, 'A'
+	jl notUpper
+	cmp rdi, 'Z'
+	jg notUpper
+
+	mov rax, 1
+	jmp return
+
+notUpper:
+	mov rax, 0
+
+return:
+	pop rbp
+	ret

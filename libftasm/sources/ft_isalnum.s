@@ -1,18 +1,17 @@
-global _ft_isalnum
-extern _ft_isalpha
-extern _ft_isdigit
-
+section .text
+	global _ft_isalnum
+	extern _ft_isalpha
+	extern _ft_isdigit
 
 _ft_isalnum:
-    call _ft_isalpha
-    test rax, rax
-    jnz isAlnum
-    call _ft_isdigit
-    test rax, rax
-    jnz isAlnum
-    mov rax, 0
-    ret
+	push rbp
+	mov rbp, rsp
 
-    isAlnum:
-    mov rax, 1
-    ret
+	call _ft_isalpha
+	test rax, rax
+	jnz return
+	call _ft_isdigit
+
+return:
+	pop rbp
+	ret

@@ -1,13 +1,21 @@
-global _ft_islower
+section .text
+	global _ft_islower
 
 _ft_islower:
-    cmp rdi, 'a'
-    jl notLower
-    cmp rdi, 'z'
-    jg notLower
-    mov rax, 1
-    ret
+	push rbp
+	mov rbp, rsp
 
-    notLower:
-    mov rax, 0
-    ret
+	cmp rdi, 'a'
+	jl notLower
+	cmp rdi, 'z'
+	jg notLower
+
+	mov rax, 1
+	jmp return
+
+notLower:
+	mov rax, 0
+
+return:
+	leave
+	ret
