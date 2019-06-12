@@ -12,7 +12,7 @@ _ft_isblank:
 	je isblank
 
 	;if not, set rax to 0
-	mov rax, 0
+	xor rax, rax
 	jmp return
 
 isblank:

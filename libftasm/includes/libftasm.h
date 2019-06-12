@@ -25,5 +25,7 @@ int		ft_islower(int c);
 int		ft_isupper(int c);
 int		ft_isblank(int c);
 int		ft_isspace(int c);
+int		ft_putchar(int c);
+void	ft_putstr(const char *s);
 
 #endif

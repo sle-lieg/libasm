@@ -1,0 +1,36 @@
+%ifndef MACROS_MAC
+ %define MACROS_MAC
+
+%define SYS_READ	0x2000003
+%define SYS_WRITE	0x2000004
+%define STDOUT		0x1
+
+;prolog ( stack size )
+%macro prolog 1
+	push rbp
+	mov rbp, rsp
+	sub rsp, %1 ; nb bytes to reserve for the current call stack
+%endmacro prolog
+
+%macro epilog 0
+	leave
+	ret
+%endmacro epilog
+
+;putstr ( buf_size )
+%macro print_buffer 1
+	mov rdi, STDOUT
+	mov rdx, %1 ; buf_size
+	mov rax, SYS_WRITE
+	syscall
+%endmacro
+
+;read_fd ( fd, buf_size )
+%macro read_fd 2
+	mov rdi, %1 ; fd
+	mov rdx, %2 ; buf_size
+	mov rax, SYS_READ
+	syscall
+%endmacro
+
+%endif

@@ -14,7 +14,7 @@ _ft_isupper:
 	jmp return
 
 notUpper:
-	mov rax, 0
+	xor rax, rax
 
 return:
 	pop rbp

@@ -1,8 +1,5 @@
-%define SYS_READ 0x2000003
-%define SYS_WRITE 0x2000004
-%define STDOUT 1
-%define BUFF_SIZE 50
-%define FD_OFF 0x8
+%define BUFF_SIZE	0x32
+%define FD_OFF		0x8
 
 section .bss
 	buffer resb BUFF_SIZE
@@ -10,41 +7,39 @@ section .bss
 section .text
 	global _ft_cat
 
+%include "sources/macros.mac"
+
 ; read fd and output the data
 ; rdi: file descriptor
-
 _ft_cat:
 	push rbp
 	mov rbp, rsp
 	sub rsp, 0x10
 
 	; save file descriptor on stack
-	mov [rsp + FD_OFF], rdi
-	; read
-
+	mov [rbp - FD_OFF], rdi
 read:
-	; get file descriptor from stack
-	mov rdi, [rsp + FD_OFF]
-	mov rax, SYS_READ
-	; mov rsi, buffer
+	; load addr of buffer to read to
 	lea rsi, [rel buffer]
-	mov rdx, BUFF_SIZE
-	syscall
-	jc return
-	; test if EOF or error (-1)
-	cmp rax, 0x1
-	jl return
+	read_fd [rbp - FD_OFF], BUFF_SIZE
+	; test if error occured
+	jc error
+	; test if EOF (0)
+	test rax, rax
+	jz return
 
 	;print buffer
-	mov rdx, rax
-	mov rax, SYS_WRITE
-	mov rdi, STDOUT
 	lea rsi, [rel buffer]
-	; mov rsi, buffer
-	syscall
+	print_buffer rax
+	jc error
+
 	cmp rax, 0
 	jg read
 
 return:
 	leave
 	ret
+
+error:
+	mov rax, -1
+	jmp return

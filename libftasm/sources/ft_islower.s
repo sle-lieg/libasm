@@ -14,7 +14,7 @@ _ft_islower:
 	jmp return
 
 notLower:
-	mov rax, 0
+	xor rax, rax
 
 return:
 	leave

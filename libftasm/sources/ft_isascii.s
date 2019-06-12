@@ -13,7 +13,7 @@ _ft_isascii:
 	jmp return
 
 notAscii:
-	mov rax, 0
+	xor rax, rax
 
 return:
 	pop rbp

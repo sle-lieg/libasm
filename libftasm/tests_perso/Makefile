@@ -11,7 +11,8 @@ LIBS		= -L$(LIBFTASM_D) -lfts
 
 SOURCES =	main.c tools.c test_bzero.c test_is.c test_tolower.c\
 			test_toupper.c test_memcpy.c test_memset.c test_puts.c\
-			test_strdup.c test_strlen.c test_strcat.c
+			test_strdup.c test_strlen.c test_strcat.c test_putchar.c\
+			test_putstr.c
 
 OBJECTS = $(SOURCES:%.c=$(OBJECTS_D)%.o)
 

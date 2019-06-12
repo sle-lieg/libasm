@@ -11,9 +11,6 @@ _ft_isalpha:
 	test rax, rax
 	jnz return
 	call _ft_isupper
-	test rax, rax
-	jnz return
-	mov rax, 0
 
 return:
 	pop rbp

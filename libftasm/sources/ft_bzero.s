@@ -5,16 +5,10 @@ _ft_bzero:
 	push rbp
 	mov rbp, rsp
 
-	test rsi, rsi
-	jz end
+	cld
 	mov rcx, rsi
-	add rdi, rcx
+	xor al, al
+	rep stosb
 
-eraseMemory:
-	dec rdi
-	mov byte [rdi], 0
-	loop eraseMemory
-
-end:
 	pop rbp
 	ret

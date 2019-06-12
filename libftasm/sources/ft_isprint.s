@@ -13,7 +13,7 @@ _ft_isprint:
 	jmp return
 
 notPrintable:
-	mov rax, 0
+	xor rax, rax
 
 return:
 	pop rbp

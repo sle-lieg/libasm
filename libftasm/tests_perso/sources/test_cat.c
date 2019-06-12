@@ -18,5 +18,7 @@ int main(int ac, char **av)
 	ft_cat(fd);
 	close(fd);
 
+	ft_cat(-1);
+
 	return (0);
 }

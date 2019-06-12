@@ -14,7 +14,7 @@ _ft_isdigit:
 	jmp return
 
 notDigit:
-	mov rax, 0
+	xor rax, rax
 
 return:
 	pop rbp

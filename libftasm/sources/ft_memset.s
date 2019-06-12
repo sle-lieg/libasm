@@ -9,7 +9,7 @@ _ft_memset:
 	sub rsp, 0x10
 
 	; save rdi: src addr
-	mov [rbp + STR_OFF], rdi
+	mov [rbp - STR_OFF], rdi
 	; mov src len in rcx
 	mov rcx, rdx
 	; mov 2nd param (char to set) in rax
@@ -19,7 +19,7 @@ _ft_memset:
 	; rep -> dec rcx, repeat instruction if rcx != 0
 	rep stosb
 
-	mov rax, [rbp + STR_OFF]
+	mov rax, [rbp - STR_OFF]
 
 	leave
 	ret

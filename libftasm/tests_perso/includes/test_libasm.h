@@ -23,5 +23,7 @@ int test_puts(void);
 int test_strdup(void);
 int test_strlen(void);
 int test_strcat(void);
+int test_putchar(void);
+int test_putstr(void);
 
 #endif

@@ -13,6 +13,7 @@
 	isupper X
 	isblank √
 	isspace √
+	putchar
 
  */
 
@@ -32,10 +33,12 @@ int main()
 	// test_toupper();
 	// test_memcpy();
 	// test_memset();
-	test_puts();
+	// test_puts();
 	// test_strdup();
 	// test_strlen();
 	// test_strcat();
+	// test_putchar();
+	test_putstr();
 
 	// for (int i = -255; i < 255; i++)
 	// {

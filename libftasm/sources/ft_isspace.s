@@ -18,7 +18,7 @@ isspace:
 	jmp return
 
 notspace:
-	mov rax, 0
+	xor rax, rax
 
 return:
 	pop rbp
